@@ -23,7 +23,7 @@ export default function PaginationControls({
             >
                 Prev Page
             </button>
-            {pageNum}
+            <span className="page-num">{pageNum}</span>
             <button onClick={() => handleNewPageClick(1)}>Next Page</button>
         </div>
     );

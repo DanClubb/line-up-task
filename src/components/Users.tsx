@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { User } from "../types.ts";
+import LoadingSpinner from "./LoadingSpinner.tsx";
 import PaginationControls from "./PaginationControls.tsx";
 
 export default function Users() {
@@ -12,12 +13,22 @@ export default function Users() {
     const userId = searchParams.get("userid") ?? "1";
 
     const [users, setUsers] = useState<User[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchUsers = async () => {
-        const res = await fetch(`https://reqres.in/api/users?page=${pageNum}`);
-        const data = await res.json();
-        const users = data.data;
-        setUsers(users);
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `https://reqres.in/api/users?page=${pageNum}`
+            );
+            const data = await res.json();
+            const users = data.data;
+            setUsers(users);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleUserClicked = (id: number) => {
@@ -30,22 +41,29 @@ export default function Users() {
     useEffect(() => {
         fetchUsers();
     }, [pageNum]);
+
     return (
         <div>
             <ul>
-                {users.map((user) => (
-                    <li
-                        key={user.id}
-                        className={`user ${
-                            user.id === parseInt(userId) ? "selected" : "nah"
-                        }`}
-                        onClick={() => handleUserClicked(user.id)}
-                    >
-                        <h1>
-                            {user.first_name} {user.last_name}
-                        </h1>
-                    </li>
-                ))}
+                {isLoading ? (
+                    <LoadingSpinner />
+                ) : (
+                    users.map((user) => (
+                        <li
+                            key={user.id}
+                            className={`user ${
+                                user.id === parseInt(userId)
+                                    ? "selected"
+                                    : "nah"
+                            }`}
+                            onClick={() => handleUserClicked(user.id)}
+                        >
+                            <h1>
+                                {user.first_name} {user.last_name}
+                            </h1>
+                        </li>
+                    ))
+                )}
             </ul>
             <PaginationControls
                 pageNum={pageNum}
