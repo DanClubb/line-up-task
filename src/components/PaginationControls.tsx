@@ -23,6 +23,7 @@ export default function PaginationControls({
             >
                 Prev Page
             </button>
+            {pageNum}
             <button onClick={() => handleNewPageClick(1)}>Next Page</button>
         </div>
     );

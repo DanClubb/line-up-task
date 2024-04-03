@@ -18,6 +18,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    cursor: pointer;
+}
+
 .user {
     padding: 1rem 1rem;
     white-space: nowrap;
@@ -30,8 +34,10 @@ a {
 }
 
 .pagination-controls {
-    margin: 1rem auto 0;
-    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .user-details {
