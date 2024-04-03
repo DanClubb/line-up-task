@@ -1,7 +1,13 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 function App() {
-    return <h1>Template App</h1>;
+    return (
+        <Routes>
+            <Route path="/users" element={<div>List of users</div>} />
+            <Route path="/user" element={<div>User details</div>} />
+        </Routes>
+    );
 }
 
 export default App;
