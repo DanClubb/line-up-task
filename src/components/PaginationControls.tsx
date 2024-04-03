@@ -1,11 +1,15 @@
 import { SetURLSearchParams } from "react-router-dom";
 
 type PaginationControlsProps = {
+    hasPrev: boolean;
+    hasNext: boolean;
     pageNum: string;
     setSearchParams: SetURLSearchParams;
 };
 
 export default function PaginationControls({
+    hasPrev,
+    hasNext,
     pageNum,
     setSearchParams,
 }: PaginationControlsProps) {
@@ -17,14 +21,13 @@ export default function PaginationControls({
     };
     return (
         <div className="pagination-controls">
-            <button
-                onClick={() => handleNewPageClick(-1)}
-                disabled={pageNum === "1"}
-            >
+            <button onClick={() => handleNewPageClick(-1)} disabled={!hasPrev}>
                 Prev Page
             </button>
             <span className="page-num">{pageNum}</span>
-            <button onClick={() => handleNewPageClick(1)}>Next Page</button>
+            <button onClick={() => handleNewPageClick(1)} disabled={!hasNext}>
+                Next Page
+            </button>
         </div>
     );
 }

@@ -47,7 +47,7 @@ export default function Users() {
             <ul>
                 {isLoading ? (
                     <LoadingSpinner />
-                ) : (
+                ) : users.length ? (
                     users.map((user) => (
                         <li
                             key={user.id}
@@ -63,9 +63,13 @@ export default function Users() {
                             </h1>
                         </li>
                     ))
+                ) : (
+                    <div className="no-users">No more users</div>
                 )}
             </ul>
             <PaginationControls
+                hasPrev={parseInt(pageNum) > 1}
+                hasNext={users.length > 0}
                 pageNum={pageNum}
                 setSearchParams={setSearchParams}
             />

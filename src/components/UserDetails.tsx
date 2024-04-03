@@ -32,7 +32,6 @@ export default function UserDetails() {
     }, [userId]);
     return (
         <div className="user-details">
-            {/* <LoadingSpinner /> */}
             {isLoading ? (
                 <LoadingSpinner />
             ) : (
