@@ -16,7 +16,7 @@ export default function PaginationControls({
         });
     };
     return (
-        <div>
+        <div className="pagination-controls">
             <button
                 onClick={() => handleNewPageClick(-1)}
                 disabled={pageNum === "1"}

@@ -23,12 +23,8 @@ export default function Users() {
         <div>
             <ul>
                 {users.map((user) => (
-                    <li>
+                    <li className="user">
                         <Link key={user.id} to={`/user?id=${user.id}`}>
-                            <img
-                                src={user.avatar}
-                                alt={`${user.first_name}'s profile picture`}
-                            />
                             <h1>
                                 {user.first_name} {user.last_name}
                             </h1>
