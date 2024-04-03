@@ -1,14 +1,25 @@
 :root {
     --accent: #1321e4;
+    --light-gray: rgb(245, 245, 245);
+}
+h1 {
+    margin: 0 auto;
+    padding: 2rem 0;
+    max-width: 100rem;
+    background-color: var(--light-gray);
+    color: var(--accent);
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline;
 }
 
 main {
     display: flex;
     margin: 0 auto;
-    padding-top: 8rem;
     max-width: 100rem;
     height: 100vh;
-    background-color: rgb(245, 245, 245);
+    background-color: var(--light-gray);
+    overflow-x: scroll;
 }
 
 ul {
@@ -48,6 +59,14 @@ button {
     width: fit-content;
 }
 
+.toggle-sidebar {
+    display: none;
+    margin-left: auto;
+    padding: unset;
+    height: 28px;
+    border-radius: 50%;
+}
+
 .pagination-controls {
     display: flex;
     justify-content: center;
@@ -58,7 +77,9 @@ button {
 .user-details-container {
     flex-grow: 1;
     padding: 4rem 0 0 5rem;
+    min-width: 30rem;
     background-color: white;
+    border-right: 3px solid var(--light-gray);
 }
 
 .user-details {
@@ -103,5 +124,68 @@ button {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 960px) {
+    .user-details-container {
+        padding: 3rem 0 0 2.5rem;
+    }
+}
+
+@media (max-width: 840px) {
+    ul {
+        width: 16rem;
+    }
+
+    .user > h2 {
+        font-size: 1.4rem;
+    }
+
+    .user-details > img {
+        width: 8rem;
+    }
+}
+
+@media (max-width: 730px) {
+    ul {
+        width: 14rem;
+    }
+
+    .user > h2 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 700px) {
+    ul {
+        position: relative;
+    }
+
+    .sidebar-closed {
+        width: 1.5rem;
+    }
+
+    .sidebar-closed > .user,
+    .sidebar-closed > .no-users,
+    .sidebar-closed .pagination-controls {
+        display: none;
+    }
+
+    .toggle-sidebar {
+        display: block;
+        position: absolute;
+        right: 0;
+        transform: translateX(35%);
+    }
+
+    .user > h2 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 535px) {
+    .user-details {
+        flex-direction: column;
     }
 }

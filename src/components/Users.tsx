@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { User } from "../types.ts";
+import Arrow from "./Arrow.tsx";
 import LoadingSpinner from "./LoadingSpinner.tsx";
 import PaginationControls from "./PaginationControls.tsx";
 
@@ -14,6 +15,7 @@ export default function Users() {
 
     const [users, setUsers] = useState<User[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [sidebarIsOpen, setSidebarIsOpen] = useState(true);
 
     const fetchUsers = async () => {
         setIsLoading(true);
@@ -38,13 +40,23 @@ export default function Users() {
         });
     };
 
+    const handleSidebarToggle = () => {
+        setSidebarIsOpen((prev) => !prev);
+    };
+
     useEffect(() => {
         fetchUsers();
     }, [pageNum]);
 
     return (
         <div>
-            <ul>
+            <ul className={`${!sidebarIsOpen && "sidebar-closed"}`}>
+                <button
+                    className="toggle-sidebar"
+                    onClick={handleSidebarToggle}
+                >
+                    <Arrow />
+                </button>
                 {isLoading ? (
                     <LoadingSpinner />
                 ) : users.length ? (
@@ -58,21 +70,23 @@ export default function Users() {
                             }`}
                             onClick={() => handleUserClicked(user.id)}
                         >
-                            <h1>
+                            <h2>
                                 {user.first_name} {user.last_name}
-                            </h1>
+                            </h2>
                         </li>
                     ))
                 ) : (
                     <div className="no-users">No more users</div>
                 )}
             </ul>
-            <PaginationControls
-                hasPrev={parseInt(pageNum) > 1}
-                hasNext={users.length > 0}
-                pageNum={pageNum}
-                setSearchParams={setSearchParams}
-            />
+            {sidebarIsOpen && (
+                <PaginationControls
+                    hasPrev={parseInt(pageNum) > 1}
+                    hasNext={users.length > 0}
+                    pageNum={pageNum}
+                    setSearchParams={setSearchParams}
+                />
+            )}
         </div>
     );
 }
