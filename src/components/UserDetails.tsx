@@ -22,15 +22,26 @@ export default function UserDetails() {
         fetchUsers();
     }, [userId]);
     return (
-        <div>
+        <div className="user-details">
             <img
                 src={userDetails?.avatar}
                 alt={`${userDetails?.first_name}'s profile picture`}
             />
-            <h1>
-                {userDetails?.first_name} {userDetails?.last_name}
-            </h1>
-            <p>Email: {userDetails?.email}</p>
+            <div className="user-details-text">
+                <p>
+                    First name: <strong>{userDetails?.first_name}</strong>
+                </p>
+                <p>
+                    Last name: <strong>{userDetails?.last_name}</strong>
+                </p>
+
+                <p>
+                    Email:{" "}
+                    <span className="user-details-email">
+                        {userDetails?.email}
+                    </span>
+                </p>
+            </div>
         </div>
     );
 }

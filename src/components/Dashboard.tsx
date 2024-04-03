@@ -7,7 +7,7 @@ export default function Dashboard() {
             <section>
                 <Users />
             </section>
-            <section className="user-details">
+            <section className="user-details-container">
                 <UserDetails />
             </section>
         </main>

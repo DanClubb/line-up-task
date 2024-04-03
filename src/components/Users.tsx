@@ -9,6 +9,7 @@ export default function Users() {
         userid: "1",
     });
     const pageNum = searchParams.get("page") ?? "1";
+    const userId = searchParams.get("userid") ?? "1";
 
     const [users, setUsers] = useState<User[]>([]);
 
@@ -35,7 +36,9 @@ export default function Users() {
                 {users.map((user) => (
                     <li
                         key={user.id}
-                        className="user"
+                        className={`user ${
+                            user.id === parseInt(userId) ? "selected" : "nah"
+                        }`}
                         onClick={() => handleUserClicked(user.id)}
                     >
                         <h1>
