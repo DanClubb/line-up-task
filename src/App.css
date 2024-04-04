@@ -1,5 +1,6 @@
 :root {
-    --accent: #1321e4;
+    --accent: rgb(19, 33, 228);
+    --accentRGB: 19, 33, 228;
     --light-gray: rgb(245, 245, 245);
 }
 
@@ -31,25 +32,23 @@ ul {
     list-style: none;
 }
 
-button {
-    padding: 0.25rem 0.5rem;
-    border: none;
-    border-radius: 3px;
-    background-color: var(--accent);
-    color: white;
-    cursor: pointer;
-}
-
 .user {
+    display: block;
     padding: 1rem 1rem;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    text-align: left;
     white-space: nowrap;
     overflow-x: scroll;
     transition: 150ms;
+    cursor: pointer;
 }
 
-.user:hover {
+.user:hover,
+.user:focus {
     background-color: #ccc;
-    cursor: pointer;
 }
 
 .selected {
@@ -57,7 +56,8 @@ button {
     color: white;
 }
 
-.selected:hover {
+.selected:hover,
+.selected:focus {
     background-color: var(--accent);
 }
 
@@ -87,6 +87,23 @@ button {
     align-items: center;
     gap: 0.5rem;
     margin-top: 1rem;
+}
+
+.pagination-controls > button {
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+}
+
+.pagination-controls > button:focus-visible,
+.pagination-controls > button:hover {
+    background-color: rgba(var(--accentRGB), 0.15);
+    outline: 2px solid var(--accent);
+    color: black;
+    transition: 150ms;
 }
 
 /* USER DETAILS */

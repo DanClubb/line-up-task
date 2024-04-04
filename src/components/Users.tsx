@@ -70,19 +70,17 @@ export default function Users() {
                     <LoadingSpinner />
                 ) : users.length ? (
                     users.map((user) => (
-                        <li
-                            key={user.id}
-                            className={`user ${
-                                user.id === parseInt(userId)
-                                    ? "selected"
-                                    : "nah"
-                            }`}
-                            onClick={() => handleUserClicked(user.id)}
-                            data-testid="user"
-                        >
-                            <h2>
+                        <li key={user.id} data-testid="user">
+                            <button
+                                className={`user ${
+                                    user.id === parseInt(userId)
+                                        ? "selected"
+                                        : "nah"
+                                }`}
+                                onClick={() => handleUserClicked(user.id)}
+                            >
                                 {user.first_name} {user.last_name}
-                            </h2>
+                            </button>
                         </li>
                     ))
                 ) : (
