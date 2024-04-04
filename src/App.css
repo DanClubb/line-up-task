@@ -203,7 +203,7 @@ ul {
         width: 1.5rem;
     }
 
-    .sidebar-closed > .user,
+    .sidebar-closed > li,
     .sidebar-closed > .no-users {
         display: none;
     }

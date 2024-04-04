@@ -75,7 +75,7 @@ export default function Users() {
                                 className={`user ${
                                     user.id === parseInt(userId)
                                         ? "selected"
-                                        : "nah"
+                                        : ""
                                 }`}
                                 onClick={() => handleUserClicked(user.id)}
                             >
