@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+# Project setup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+First open a terminal and make sure you are in the project directory
 
-Currently, two official plugins are available:
+Next run **_"npm install"_** (or the equivilent command for an alternative package manager) to install all the dependencies locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Run project locally
 
-## Expanding the ESLint configuration
+Inside the terminal run **_"npm run dev"_** (or the equivilent) and navigate to the url that is displayed in the terminal (likely to be http://localhost:5173/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+All other scripts can be found in the package.json
 
-- Configure the top-level `parserOptions` property like this:
+# My decisions
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Tech used
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+-   React
+-   CSS
+-   Jest / React Testing Library (Although the tests are broken in this repo and I haven't managed to find a fix yet)
+-   Vite
+
+## Main objectives
+
+I wanted a clear and easy way to view the users and their details.  
+I wanted to use the url to hold some state.  
+I wanted the app to be useable on different screen sizes.
+
+I decided to have both the list of users and the specific user details on the same page, this was to make the design look a bit fuller as well as making it easier for users to quickly move from one user to another.
+
+## Challenges / Things I would've changed with more time
+
+-   Fix the testing issue and write some more tests.
+-   refactor some code, in particular I felt I was using the parseInt method quite a lot.

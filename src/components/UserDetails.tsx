@@ -4,6 +4,7 @@ import { User } from "../types";
 import LoadingSpinner from "./LoadingSpinner";
 
 export default function UserDetails() {
+    // retriving userid value from search params
     const [searchParams] = useSearchParams({
         page: "1",
         userid: "1",
@@ -13,6 +14,7 @@ export default function UserDetails() {
     const [userDetails, setUserDetails] = useState<User>();
     const [isLoading, setIsLoading] = useState(false);
 
+    //  fecthing the selected user's details, using the userid from url
     const fetchUsers = async () => {
         setIsLoading(true);
         try {
@@ -34,29 +36,38 @@ export default function UserDetails() {
         <div className="user-details">
             {isLoading ? (
                 <LoadingSpinner />
-            ) : (
+            ) : userDetails ? (
                 <>
                     <img
-                        src={userDetails?.avatar}
-                        alt={`${userDetails?.first_name}'s profile picture`}
+                        src={userDetails.avatar}
+                        alt={`${userDetails.first_name}'s profile picture`}
                     />
                     <div className="user-details-text">
                         <p>
                             First name:{" "}
-                            <strong>{userDetails?.first_name}</strong>
+                            <strong data-testid="firstname">
+                                {userDetails.first_name}
+                            </strong>
                         </p>
                         <p>
-                            Last name: <strong>{userDetails?.last_name}</strong>
+                            Last name:{" "}
+                            <strong data-testid="lastname">
+                                {userDetails.last_name}
+                            </strong>
                         </p>
 
                         <p>
                             Email:{" "}
                             <span className="user-details-email">
-                                {userDetails?.email}
+                                {userDetails.email}
                             </span>
                         </p>
                     </div>
                 </>
+            ) : (
+                <div style={{ color: "red" }}>
+                    Can't get user details at this time
+                </div>
             )}
         </div>
     );

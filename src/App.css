@@ -2,6 +2,7 @@
     --accent: #1321e4;
     --light-gray: rgb(245, 245, 245);
 }
+
 h1 {
     margin: 0 auto;
     padding: 2rem 0;
@@ -22,9 +23,11 @@ main {
     overflow-x: scroll;
 }
 
+/* SIDEBAR CONTAINING THE LIST OF USERS  */
+
 ul {
     width: 20rem;
-    height: 23rem;
+    min-height: 23rem;
     list-style: none;
 }
 
@@ -50,7 +53,12 @@ button {
 }
 
 .selected {
-    background-color: #bbb;
+    background-color: var(--accent);
+    color: white;
+}
+
+.selected:hover {
+    background-color: var(--accent);
 }
 
 .no-users {
@@ -63,29 +71,39 @@ button {
     display: none;
     margin-left: auto;
     padding: unset;
-    height: 28px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
+    border: 2px solid var(--accent);
+    background-color: white;
+    color: var(--accent);
 }
+
+/* PAGINATION CONTROLS */
 
 .pagination-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 1rem;
 }
+
+/* USER DETAILS */
 
 .user-details-container {
     flex-grow: 1;
-    padding: 4rem 0 0 5rem;
-    min-width: 30rem;
+    padding: 4rem 1rem 0;
     background-color: white;
-    border-right: 3px solid var(--light-gray);
+    border-right: 0.75rem solid var(--light-gray);
 }
 
 .user-details {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .user-details > img {
@@ -108,15 +126,19 @@ button {
     cursor: pointer;
 }
 
+/* LOADING SPINNER */
+
 .loading-spinner {
     margin: 0 auto;
     width: 3rem;
     height: 3rem;
-    border: 5px solid #fff;
+    border: 5px solid #d6f0f7;
     border-bottom-color: var(--accent);
     border-radius: 50%;
     animation: rotation 1s linear infinite;
 }
+
+/* ANIMATIONS */
 
 @keyframes rotation {
     0% {
@@ -127,15 +149,12 @@ button {
     }
 }
 
-@media (max-width: 960px) {
-    .user-details-container {
-        padding: 3rem 0 0 2.5rem;
-    }
-}
+/* RESPONSIVE STYLES FOR SMALLER DEVICES */
 
 @media (max-width: 840px) {
     ul {
         width: 16rem;
+        min-height: 22rem;
     }
 
     .user > h2 {
@@ -150,6 +169,7 @@ button {
 @media (max-width: 730px) {
     ul {
         width: 14rem;
+        min-height: 21rem;
     }
 
     .user > h2 {
@@ -167,16 +187,26 @@ button {
     }
 
     .sidebar-closed > .user,
-    .sidebar-closed > .no-users,
-    .sidebar-closed .pagination-controls {
+    .sidebar-closed > .no-users {
         display: none;
     }
 
+    .arrow {
+        transition: 150ms;
+    }
+
+    .sidebar-closed .arrow {
+        transform: rotate(180deg);
+    }
+
     .toggle-sidebar {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
         right: 0;
         transform: translateX(35%);
+        transition: 300ms;
     }
 
     .user > h2 {
@@ -187,5 +217,17 @@ button {
 @media (max-width: 535px) {
     .user-details {
         flex-direction: column;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .user-details > img {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 410px) {
+    .user-details-text {
+        font-size: 1rem;
     }
 }
